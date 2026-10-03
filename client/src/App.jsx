@@ -1,5 +1,8 @@
 import { useState } from "react";
+
 import "./App.css";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function App() {
   const [customName, setCustomName] = useState("");
@@ -146,7 +149,7 @@ function App() {
 
     try {
       const checkResponse = await fetch(
-        `http://localhost:5000/api/links/check/${encodeURIComponent(
+        `${API_URL}/api/links/check/${encodeURIComponent(
           customName.trim()
         )}`
       );
@@ -179,7 +182,7 @@ function App() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/links",
+        `${API_URL}/api/links`,
         {
           method: "POST",
 
@@ -205,7 +208,7 @@ function App() {
         return;
       }
 
-      const newLink = `http://localhost:5000/${customName
+      const newLink = `${API_URL}/${customName
         .trim()
         .toLowerCase()}`;
 
